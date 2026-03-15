@@ -1,7 +1,7 @@
-import { connectDatabase } from "./src/config/database.ts";
-import { env } from "./src/config/env.ts";
-import { app } from "./src/app.ts";
-import { seedProducts } from "./src/services/seed.service.ts";
+import { app } from "./app.ts";
+import { connectDatabase } from "./config/database.ts";
+import { env } from "./config/env.ts";
+import { seedProducts } from "./services/seed.service.ts";
 
 async function startServer() {
   try {

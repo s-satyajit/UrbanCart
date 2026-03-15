@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "rootDir": ".",
+    "rootDir": "src",
     "outDir": "dist",
     "allowJs": false,
     "skipLibCheck": true,
@@ -17,5 +17,5 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
   },
-  "include": ["index.ts", "src/**/*.ts", "src/**/*.d.ts"]
+  "include": ["src/index.ts", "src/**/*.ts", "src/**/*.d.ts"]
 }
