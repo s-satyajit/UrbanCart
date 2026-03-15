@@ -1,9 +1,9 @@
-import { asyncHandler } from "../middleware/async-handler.ts";
-import { badRequestError, notFoundError } from "../middleware/error-handler.ts";
-import { Product } from "../models/Product.ts";
-import { Wishlist } from "../models/Wishlist.ts";
-import { ensureUserResources, getUserSummary } from "../services/account.service.ts";
-import { serializeWishlist } from "../utils/serializers.ts";
+import { asyncHandler } from "../middleware/async-handler.js";
+import { badRequestError, notFoundError } from "../middleware/error-handler.js";
+import { Product } from "../models/Product.js";
+import { Wishlist } from "../models/Wishlist.js";
+import { ensureUserResources, getUserSummary } from "../services/account.service.js";
+import { serializeWishlist } from "../utils/serializers.js";
 
 async function getPopulatedWishlist(userId) {
   return Wishlist.findOne({ user: userId }).populate("items");
@@ -53,3 +53,4 @@ export const removeWishlistItem = asyncHandler(async (req, res) => {
   const summary = await getUserSummary(req.auth.user._id);
   res.json({ items: serializeWishlist(populatedWishlist), summary });
 });
+

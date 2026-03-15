@@ -3,8 +3,8 @@ import {
   addWishlistItem,
   getWishlist,
   removeWishlistItem,
-} from "../controllers/wishlist.controller.ts";
-import { requireAuth } from "../middleware/auth.ts";
+} from "../controllers/wishlist.controller.js";
+import { requireAuth } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -14,3 +14,4 @@ router.post("/items", addWishlistItem);
 router.delete("/items/:productId", removeWishlistItem);
 
 export default router;
+

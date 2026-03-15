@@ -1,6 +1,6 @@
-import { asyncHandler } from "../middleware/async-handler.ts";
-import { ensureUserResources, getUserSummary } from "../services/account.service.ts";
-import { serializeUser } from "../utils/serializers.ts";
+import { asyncHandler } from "../middleware/async-handler.js";
+import { ensureUserResources, getUserSummary } from "../services/account.service.js";
+import { serializeUser } from "../utils/serializers.js";
 
 export const getProfile = asyncHandler(async (req, res) => {
   await ensureUserResources(req.auth.user._id);
@@ -40,3 +40,4 @@ export const updateProfile = asyncHandler(async (req, res) => {
     message: "Profile updated successfully.",
   });
 });
+

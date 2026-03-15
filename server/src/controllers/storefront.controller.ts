@@ -1,8 +1,8 @@
-import { aboutContent } from "../constants/site-content.ts";
-import { asyncHandler } from "../middleware/async-handler.ts";
-import { Product } from "../models/Product.ts";
-import { getUserSummary } from "../services/account.service.ts";
-import { serializeProduct } from "../utils/serializers.ts";
+import { aboutContent } from "../constants/site-content.js";
+import { asyncHandler } from "../middleware/async-handler.js";
+import { Product } from "../models/Product.js";
+import { getUserSummary } from "../services/account.service.js";
+import { serializeProduct } from "../utils/serializers.js";
 
 export const getStorefront = asyncHandler(async (req, res) => {
   const featuredProducts = await Product.find({ featured: true }).limit(4);
@@ -28,3 +28,4 @@ export const getStorefront = asyncHandler(async (req, res) => {
     summary,
   });
 });
+

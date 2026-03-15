@@ -1,4 +1,4 @@
-import { navigationLinks } from "../constants/site-content.ts";
+import { navigationLinks } from "../constants/site-content.js";
 
 export function serializeUser(user) {
   if (!user) {
@@ -76,3 +76,4 @@ export function serializeOrder(order) {
 export function buildNavigation() {
   return navigationLinks;
 }
+

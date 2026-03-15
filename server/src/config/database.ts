@@ -1,6 +1,6 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
+import type { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { env } from "./env.ts";
+import { env } from "./env.js";
 
 let memoryServer = null;
 
@@ -20,6 +20,8 @@ export async function connectDatabase() {
     console.warn(
       `MongoDB unavailable at ${env.mongoUri}. Falling back to in-memory MongoDB for development.`
     );
+
+    const { MongoMemoryServer } = await import("mongodb-memory-server");
 
     memoryServer = await MongoMemoryServer.create({
       instance: {
@@ -43,3 +45,4 @@ export async function disconnectDatabase() {
     memoryServer = null;
   }
 }
+

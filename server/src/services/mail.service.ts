@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { env } from "../config/env.ts";
+import { env } from "../config/env.js";
 
 let transporter;
 
@@ -58,3 +58,4 @@ export async function sendContactNotification(contactMessage) {
     return false;
   }
 }
+

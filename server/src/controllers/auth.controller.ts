@@ -1,9 +1,9 @@
-import { asyncHandler } from "../middleware/async-handler.ts";
-import { badRequestError } from "../middleware/error-handler.ts";
-import { Session } from "../models/Session.ts";
-import { createUserSession, loginUser, registerUser } from "../services/auth.service.ts";
-import { ensureUserResources, getUserSummary } from "../services/account.service.ts";
-import { buildNavigation, serializeUser } from "../utils/serializers.ts";
+import { asyncHandler } from "../middleware/async-handler.js";
+import { badRequestError } from "../middleware/error-handler.js";
+import { Session } from "../models/Session.js";
+import { createUserSession, loginUser, registerUser } from "../services/auth.service.js";
+import { ensureUserResources, getUserSummary } from "../services/account.service.js";
+import { buildNavigation, serializeUser } from "../utils/serializers.js";
 
 function buildSessionPayload({ user, token = "", expiresAt = null, summary }) {
   return {
@@ -94,3 +94,4 @@ export const logout = asyncHandler(async (req, res) => {
 
   res.json({ message: "Signed out successfully." });
 });
+

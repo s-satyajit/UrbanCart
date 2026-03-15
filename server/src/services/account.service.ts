@@ -1,7 +1,7 @@
-import { Cart } from "../models/Cart.ts";
-import { Order } from "../models/Order.ts";
-import { Wishlist } from "../models/Wishlist.ts";
-import { serializeCart } from "../utils/serializers.ts";
+import { Cart } from "../models/Cart.js";
+import { Order } from "../models/Order.js";
+import { Wishlist } from "../models/Wishlist.js";
+import { serializeCart } from "../utils/serializers.js";
 
 export async function ensureUserResources(userId) {
   const [cart, wishlist] = await Promise.all([
@@ -37,3 +37,4 @@ export async function getUserSummary(userId) {
     ordersCount,
   };
 }
+

@@ -1,12 +1,12 @@
-import { contactChannels } from "../constants/site-content.ts";
-import { asyncHandler } from "../middleware/async-handler.ts";
-import { badRequestError } from "../middleware/error-handler.ts";
-import { ContactMessage } from "../models/ContactMessage.ts";
+import { contactChannels } from "../constants/site-content.js";
+import { asyncHandler } from "../middleware/async-handler.js";
+import { badRequestError } from "../middleware/error-handler.js";
+import { ContactMessage } from "../models/ContactMessage.js";
 import {
   createContactDraft,
   isGeminiConfigured,
-} from "../services/gemini.service.ts";
-import { sendContactNotification } from "../services/mail.service.ts";
+} from "../services/gemini.service.js";
+import { sendContactNotification } from "../services/mail.service.js";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -155,3 +155,4 @@ export const createContactAIDraft = asyncHandler(async (req, res) => {
 
   res.json(draft);
 });
+

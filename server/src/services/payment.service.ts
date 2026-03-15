@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import Razorpay from "razorpay";
-import { env } from "../config/env.ts";
-import { badRequestError } from "../middleware/error-handler.ts";
+import { env } from "../config/env.js";
+import { badRequestError } from "../middleware/error-handler.js";
 
 let razorpayClient = null;
 
@@ -55,3 +55,4 @@ export function verifyRazorpaySignature({
 
   return expectedSignature === razorpaySignature;
 }
+

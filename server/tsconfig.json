@@ -13,9 +13,7 @@
     "noImplicitAny": false,
     "useUnknownInCatchVariables": false,
     "resolveJsonModule": true,
-    "types": ["node"],
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
+    "types": ["node"]
   },
   "include": ["src/index.ts", "src/**/*.ts", "src/**/*.d.ts"]
 }

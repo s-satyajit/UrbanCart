@@ -1,5 +1,5 @@
-import { env } from "../config/env.ts";
-import { badRequestError } from "../middleware/error-handler.ts";
+import { env } from "../config/env.js";
+import { badRequestError } from "../middleware/error-handler.js";
 
 const geminiEndpoint = (model) =>
   `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.geminiApiKey}`;
@@ -265,3 +265,4 @@ export async function interpretProductSearch({
     return fallback;
   }
 }
+

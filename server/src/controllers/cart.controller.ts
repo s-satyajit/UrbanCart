@@ -1,9 +1,9 @@
-import { asyncHandler } from "../middleware/async-handler.ts";
-import { badRequestError, notFoundError } from "../middleware/error-handler.ts";
-import { Cart } from "../models/Cart.ts";
-import { Product } from "../models/Product.ts";
-import { ensureUserResources, getUserSummary } from "../services/account.service.ts";
-import { serializeCart } from "../utils/serializers.ts";
+import { asyncHandler } from "../middleware/async-handler.js";
+import { badRequestError, notFoundError } from "../middleware/error-handler.js";
+import { Cart } from "../models/Cart.js";
+import { Product } from "../models/Product.js";
+import { ensureUserResources, getUserSummary } from "../services/account.service.js";
+import { serializeCart } from "../utils/serializers.js";
 
 async function getPopulatedCart(userId) {
   return Cart.findOne({ user: userId }).populate("items.product");
@@ -85,3 +85,4 @@ export const removeCartItem = asyncHandler(async (req, res) => {
   const summary = await getUserSummary(req.auth.user._id);
   res.json({ items: serializeCart(populatedCart), summary });
 });
+

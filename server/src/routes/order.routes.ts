@@ -3,8 +3,8 @@ import {
   checkout,
   getOrders,
   verifyCheckoutPayment,
-} from "../controllers/order.controller.ts";
-import { requireAuth } from "../middleware/auth.ts";
+} from "../controllers/order.controller.js";
+import { requireAuth } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -14,3 +14,4 @@ router.post("/checkout", checkout);
 router.post("/checkout/verify", verifyCheckoutPayment);
 
 export default router;
+

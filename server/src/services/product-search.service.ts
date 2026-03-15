@@ -1,5 +1,5 @@
-import { Product } from "../models/Product.ts";
-import { interpretProductSearch } from "./gemini.service.ts";
+import { Product } from "../models/Product.js";
+import { interpretProductSearch } from "./gemini.service.js";
 
 const stopWords = new Set([
   "a",
@@ -238,3 +238,4 @@ export async function findProductsBySmartSearch(query) {
     },
   };
 }
+

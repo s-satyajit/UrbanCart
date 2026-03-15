@@ -1,11 +1,11 @@
-import { aboutContent, contactChannels } from "../constants/site-content.ts";
-import { asyncHandler } from "../middleware/async-handler.ts";
-import { badRequestError } from "../middleware/error-handler.ts";
-import { Product } from "../models/Product.ts";
+import { aboutContent, contactChannels } from "../constants/site-content.js";
+import { asyncHandler } from "../middleware/async-handler.js";
+import { badRequestError } from "../middleware/error-handler.js";
+import { Product } from "../models/Product.js";
 import {
   askGeminiAboutStore,
   isGeminiConfigured,
-} from "../services/gemini.service.ts";
+} from "../services/gemini.service.js";
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("en-IN", {
@@ -163,3 +163,4 @@ ${question}
     ],
   });
 });
+

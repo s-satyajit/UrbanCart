@@ -3,7 +3,7 @@ import {
   createContactAIDraft,
   createContactMessage,
   getContact,
-} from "../controllers/contact.controller.ts";
+} from "../controllers/contact.controller.js";
 
 const router = Router();
 
@@ -12,3 +12,4 @@ router.post("/", createContactMessage);
 router.post("/ai-draft", createContactAIDraft);
 
 export default router;
+

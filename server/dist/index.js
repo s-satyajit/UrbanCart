@@ -1,7 +1,7 @@
-import { connectDatabase } from "./src/config/database.js";
-import { env } from "./src/config/env.js";
-import { app } from "./src/app.js";
-import { seedProducts } from "./src/services/seed.service.js";
+import { app } from "./app.js";
+import { connectDatabase } from "./config/database.js";
+import { env } from "./config/env.js";
+import { seedProducts } from "./services/seed.service.js";
 async function startServer() {
     try {
         await connectDatabase();

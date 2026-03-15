@@ -4,8 +4,8 @@ import {
   getCart,
   removeCartItem,
   updateCartItem,
-} from "../controllers/cart.controller.ts";
-import { requireAuth } from "../middleware/auth.ts";
+} from "../controllers/cart.controller.js";
+import { requireAuth } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -16,3 +16,4 @@ router.patch("/items/:productId", updateCartItem);
 router.delete("/items/:productId", removeCartItem);
 
 export default router;
+

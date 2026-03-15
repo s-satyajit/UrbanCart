@@ -1,5 +1,5 @@
-import { productSeed } from "../data/product-seed.ts";
-import { Product } from "../models/Product.ts";
+import { productSeed } from "../data/product-seed.js";
+import { Product } from "../models/Product.js";
 
 export async function seedProducts() {
   const count = await Product.countDocuments();
@@ -11,3 +11,4 @@ export async function seedProducts() {
   await Product.insertMany(productSeed);
   console.log("Seeded products");
 }
+
