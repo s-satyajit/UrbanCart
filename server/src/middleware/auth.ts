@@ -1,5 +1,5 @@
-import { asyncHandler } from "./async-handler.js";
-import { Session } from "../models/Session.js";
+import { asyncHandler } from "./async-handler.ts";
+import { Session } from "../models/Session.ts";
 
 function extractToken(req) {
   const header = req.header("Authorization");

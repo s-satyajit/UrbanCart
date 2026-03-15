@@ -1,11 +1,11 @@
 import bcrypt from "bcryptjs";
-import { env } from "../config/env.js";
-import { Cart } from "../models/Cart.js";
-import { Session } from "../models/Session.js";
-import { User } from "../models/User.js";
-import { Wishlist } from "../models/Wishlist.js";
-import { conflictError, unauthorizedError } from "../middleware/error-handler.js";
-import { createSessionToken } from "../utils/session-token.js";
+import { env } from "../config/env.ts";
+import { Cart } from "../models/Cart.ts";
+import { Session } from "../models/Session.ts";
+import { User } from "../models/User.ts";
+import { Wishlist } from "../models/Wishlist.ts";
+import { conflictError, unauthorizedError } from "../middleware/error-handler.ts";
+import { createSessionToken } from "../utils/session-token.ts";
 
 export async function createUserSession(user) {
   const token = createSessionToken();

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getStorefront } from "../controllers/storefront.controller.js";
+import { getStorefront } from "../controllers/storefront.controller.ts";
 
 const router = Router();
 

@@ -1,19 +1,19 @@
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
-import { env } from "./config/env.js";
-import { optionalAuth } from "./middleware/auth.js";
-import { errorHandler } from "./middleware/error-handler.js";
-import { notFoundHandler } from "./middleware/not-found.js";
-import authRoutes from "./routes/auth.routes.js";
-import cartRoutes from "./routes/cart.routes.js";
-import contactRoutes from "./routes/contact.routes.js";
-import contentRoutes from "./routes/content.routes.js";
-import orderRoutes from "./routes/order.routes.js";
-import productRoutes from "./routes/product.routes.js";
-import profileRoutes from "./routes/profile.routes.js";
-import storefrontRoutes from "./routes/storefront.routes.js";
-import wishlistRoutes from "./routes/wishlist.routes.js";
+import { env } from "./config/env.ts";
+import { optionalAuth } from "./middleware/auth.ts";
+import { errorHandler } from "./middleware/error-handler.ts";
+import { notFoundHandler } from "./middleware/not-found.ts";
+import authRoutes from "./routes/auth.routes.ts";
+import cartRoutes from "./routes/cart.routes.ts";
+import contactRoutes from "./routes/contact.routes.ts";
+import contentRoutes from "./routes/content.routes.ts";
+import orderRoutes from "./routes/order.routes.ts";
+import productRoutes from "./routes/product.routes.ts";
+import profileRoutes from "./routes/profile.routes.ts";
+import storefrontRoutes from "./routes/storefront.routes.ts";
+import wishlistRoutes from "./routes/wishlist.routes.ts";
 
 export const app = express();
 

@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { askAboutUrbanCart, getAbout } from "../controllers/content.controller.js";
+import { askAboutUrbanCart, getAbout } from "../controllers/content.controller.ts";
 import {
   createContactAIDraft,
   createContactMessage,
   getContact,
-} from "../controllers/contact.controller.js";
+} from "../controllers/contact.controller.ts";
 
 const router = Router();
 

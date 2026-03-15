@@ -3,7 +3,7 @@ import {
   createContactAIDraft,
   createContactMessage,
   getContact,
-} from "../controllers/contact.controller.js";
+} from "../controllers/contact.controller.ts";
 
 const router = Router();
 

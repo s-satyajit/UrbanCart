@@ -1,5 +1,5 @@
-import { Product } from "../models/Product.js";
-import { interpretProductSearch } from "./gemini.service.js";
+import { Product } from "../models/Product.ts";
+import { interpretProductSearch } from "./gemini.service.ts";
 
 const stopWords = new Set([
   "a",

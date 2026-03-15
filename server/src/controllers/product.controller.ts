@@ -1,7 +1,7 @@
-import { asyncHandler } from "../middleware/async-handler.js";
-import { Product } from "../models/Product.js";
-import { findProductsBySmartSearch } from "../services/product-search.service.js";
-import { serializeProduct } from "../utils/serializers.js";
+import { asyncHandler } from "../middleware/async-handler.ts";
+import { Product } from "../models/Product.ts";
+import { findProductsBySmartSearch } from "../services/product-search.service.ts";
+import { serializeProduct } from "../utils/serializers.ts";
 
 export const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find().sort({ featured: -1, createdAt: -1 });

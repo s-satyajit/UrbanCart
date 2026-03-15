@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { env } from "./env.js";
+import { env } from "./env.ts";
 
 let memoryServer = null;
 

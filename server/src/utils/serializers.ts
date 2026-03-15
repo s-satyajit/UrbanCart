@@ -1,4 +1,4 @@
-import { navigationLinks } from "../constants/site-content.js";
+import { navigationLinks } from "../constants/site-content.ts";
 
 export function serializeUser(user) {
   if (!user) {

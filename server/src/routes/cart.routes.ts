@@ -4,8 +4,8 @@ import {
   getCart,
   removeCartItem,
   updateCartItem,
-} from "../controllers/cart.controller.js";
-import { requireAuth } from "../middleware/auth.js";
+} from "../controllers/cart.controller.ts";
+import { requireAuth } from "../middleware/auth.ts";
 
 const router = Router();
 

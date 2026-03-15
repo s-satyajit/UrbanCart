@@ -3,8 +3,8 @@ import {
   checkout,
   getOrders,
   verifyCheckoutPayment,
-} from "../controllers/order.controller.js";
-import { requireAuth } from "../middleware/auth.js";
+} from "../controllers/order.controller.ts";
+import { requireAuth } from "../middleware/auth.ts";
 
 const router = Router();
 

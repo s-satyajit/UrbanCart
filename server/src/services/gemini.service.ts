@@ -1,5 +1,5 @@
-import { env } from "../config/env.js";
-import { badRequestError } from "../middleware/error-handler.js";
+import { env } from "../config/env.ts";
+import { badRequestError } from "../middleware/error-handler.ts";
 
 const geminiEndpoint = (model) =>
   `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.geminiApiKey}`;
