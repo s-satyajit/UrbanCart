@@ -1,18 +1,10 @@
 import { Router } from "express";
 import { askAboutUrbanCart, getAbout } from "../controllers/content.controller.js";
-import {
-  createContactAIDraft,
-  createContactMessage,
-  getContact,
-} from "../controllers/contact.controller.js";
 
 const router = Router();
 
 router.get("/about", getAbout);
 router.post("/about/ask", askAboutUrbanCart);
-router.get("/contact", getContact);
-router.post("/contact", createContactMessage);
-router.post("/contact/ai-draft", createContactAIDraft);
 
 export default router;
 
