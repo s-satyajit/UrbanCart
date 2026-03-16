@@ -15,7 +15,7 @@ import profileRoutes from "./routes/profile.routes.js";
 import storefrontRoutes from "./routes/storefront.routes.js";
 import wishlistRoutes from "./routes/wishlist.routes.js";
 
-export const app = express();
+const app = express();
 
 app.use(
   cors({
@@ -44,3 +44,4 @@ app.use("/api/content", contentRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
+export default app;
