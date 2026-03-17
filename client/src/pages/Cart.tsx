@@ -100,14 +100,14 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <section className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8 text-center sm:p-10">
-        <h1 className="text-3xl font-semibold text-slate-50">Your cart is empty</h1>
+      <section className="surface-panel rounded-[32px] p-8 text-center sm:p-10">
+        <h1 className="brand-font text-3xl font-semibold text-slate-50">Your cart is empty</h1>
         <p className="mt-3 text-slate-400">
           Add products from the catalog and they will show up here instantly.
         </p>
         <Link
           to="/products"
-          className="mt-6 inline-flex rounded-full bg-slate-100 px-5 py-3 font-semibold text-slate-950 transition hover:bg-white"
+          className="btn-primary mt-6 inline-flex rounded-full px-5 py-3 font-semibold text-slate-950"
         >
           Browse products
         </Link>
@@ -121,7 +121,7 @@ const Cart = () => {
         {cart.map((product) => (
           <article
             key={product.id}
-            className="flex flex-col gap-5 rounded-[28px] border border-slate-800 bg-slate-900/70 p-5 lg:flex-row"
+            className="surface-panel flex flex-col gap-5 rounded-[28px] p-5 lg:flex-row"
           >
             <img
               src={product.image}
@@ -142,7 +142,7 @@ const Cart = () => {
                 <div className="flex flex-wrap items-center gap-3">
                   <button
                     type="button"
-                    className="h-10 w-10 rounded-xl border border-slate-700 bg-slate-950 text-slate-100 transition hover:border-slate-500"
+                    className="btn-secondary h-10 w-10 rounded-xl"
                     onClick={() => updateCartItem(product.id, product.quantity - 1)}
                   >
                     -
@@ -152,14 +152,14 @@ const Cart = () => {
                   </span>
                   <button
                     type="button"
-                    className="h-10 w-10 rounded-xl border border-slate-700 bg-slate-950 text-slate-100 transition hover:border-slate-500"
+                    className="btn-secondary h-10 w-10 rounded-xl"
                     onClick={() => updateCartItem(product.id, product.quantity + 1)}
                   >
                     +
                   </button>
                   <button
                     type="button"
-                    className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition hover:border-slate-500 hover:bg-slate-950"
+                    className="btn-secondary rounded-full px-4 py-2 text-sm"
                     onClick={() => removeFromCart(product.id)}
                   >
                     Remove
@@ -174,9 +174,9 @@ const Cart = () => {
         ))}
       </div>
 
-      <aside className="h-fit rounded-[28px] border border-slate-800 bg-slate-900/70 p-6 sm:p-8">
+      <aside className="surface-panel h-fit rounded-[28px] p-6 sm:p-8">
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Summary</p>
-        <h2 className="mt-3 text-3xl font-semibold text-slate-50">Checkout</h2>
+        <h2 className="brand-font mt-3 text-3xl font-semibold text-slate-50">Checkout</h2>
         <div className="mt-6 space-y-3 text-sm text-slate-400">
           <div className="flex items-center justify-between">
             <span>Items</span>
@@ -191,7 +191,7 @@ const Cart = () => {
           type="button"
           onClick={handleCheckout}
           disabled={busyAction === "checkout" || busyAction === "checkout-verify"}
-          className="mt-6 w-full rounded-2xl bg-slate-100 px-4 py-3 font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="btn-primary mt-6 w-full rounded-2xl px-4 py-3 font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {busyAction === "checkout"
             ? "Opening Razorpay..."

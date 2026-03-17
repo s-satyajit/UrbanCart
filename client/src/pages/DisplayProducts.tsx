@@ -46,7 +46,7 @@ const DisplayProducts = () => {
 
   if (loading) {
     return (
-      <div className="rounded-[28px] border border-slate-800 bg-slate-900/70 p-10 text-center text-slate-300">
+      <div className="surface-panel rounded-[28px] p-10 text-center text-slate-300">
         Loading products...
       </div>
     );
@@ -67,10 +67,10 @@ const DisplayProducts = () => {
   const totalResults = showingSearch ? productSearch.total : products.length;
 
   return (
-    <section className="space-y-8">
-      <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8 sm:p-10">
+    <section className="space-y-8 reveal-up">
+      <div className="surface-panel rounded-[32px] p-8 sm:p-10">
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Catalog</p>
-        <h1 className="mt-3 text-4xl font-semibold text-slate-50">
+        <h1 className="brand-font mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">
           {showingSearch ? "Search results" : "Explore the product collection"}
         </h1>
         <p className="mt-3 max-w-3xl text-slate-400">
@@ -80,9 +80,9 @@ const DisplayProducts = () => {
         </p>
 
         {showingSearch && productSearch.interpreted ? (
-          <div className="mt-6 space-y-3 rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+          <div className="surface-panel-soft mt-6 space-y-3 rounded-[28px] p-5">
             <div className="flex flex-wrap items-center gap-3 text-sm text-slate-400">
-              <span className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1 text-xs uppercase tracking-[0.22em] text-slate-200">
+              <span className="surface-chip rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] text-slate-200">
                 {productSearch.usedAI ? "AI Assisted" : "Keyword Search"}
               </span>
               <span>
@@ -103,7 +103,7 @@ const DisplayProducts = () => {
       </div>
 
       {searching ? (
-        <div className="rounded-[28px] border border-slate-800 bg-slate-900/70 p-10 text-center text-slate-300">
+        <div className="surface-panel rounded-[28px] p-10 text-center text-slate-300">
           Searching the catalog...
         </div>
       ) : null}
@@ -115,7 +115,7 @@ const DisplayProducts = () => {
       ) : null}
 
       {!searching && !searchFailed && !visibleProducts.length ? (
-        <div className="rounded-[28px] border border-dashed border-slate-800 bg-slate-950/50 p-10 text-center text-slate-400">
+        <div className="surface-panel-soft rounded-[28px] border border-dashed p-10 text-center text-slate-400">
           No products matched this search yet. Try a broader phrase like category,
           brand, or product type.
         </div>

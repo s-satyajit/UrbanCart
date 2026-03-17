@@ -55,22 +55,22 @@ const Profile = () => {
 
   return (
     <section className="grid gap-6 xl:grid-cols-[0.85fr_1.15fr]">
-      <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8 sm:p-10">
+      <div className="surface-panel rounded-[32px] p-8 sm:p-10">
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Profile</p>
-        <h1 className="mt-3 text-4xl font-semibold text-slate-50">{profile?.name}</h1>
+        <h1 className="brand-font mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">{profile?.name}</h1>
         <p className="mt-3 text-slate-400">{profile?.email}</p>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-800 bg-slate-950 p-5">
+          <div className="surface-panel-soft rounded-2xl p-5">
             <p className="text-sm text-slate-400">Cart items</p>
             <p className="mt-2 text-3xl font-semibold text-slate-50">{summary.cartCount}</p>
           </div>
-          <div className="rounded-2xl border border-slate-800 bg-slate-950 p-5">
+          <div className="surface-panel-soft rounded-2xl p-5">
             <p className="text-sm text-slate-400">Saved items</p>
             <p className="mt-2 text-3xl font-semibold text-slate-50">
               {summary.wishlistCount}
             </p>
           </div>
-          <div className="rounded-2xl border border-slate-800 bg-slate-950 p-5">
+          <div className="surface-panel-soft rounded-2xl p-5">
             <p className="text-sm text-slate-400">Orders</p>
             <p className="mt-2 text-3xl font-semibold text-slate-50">{summary.ordersCount}</p>
           </div>
@@ -79,7 +79,7 @@ const Profile = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8"
+        className="surface-panel rounded-[32px] p-8"
       >
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Edit profile</p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -90,7 +90,7 @@ const Profile = () => {
               setForm((current) => ({ ...current, name: event.target.value }))
             }
             placeholder="Full name"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600 sm:col-span-2"
+            className="input-surface w-full rounded-2xl px-4 py-3 sm:col-span-2"
           />
           <input
             type="text"
@@ -99,7 +99,7 @@ const Profile = () => {
               setForm((current) => ({ ...current, phone: event.target.value }))
             }
             placeholder="Phone number"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600 sm:col-span-2"
+            className="input-surface w-full rounded-2xl px-4 py-3 sm:col-span-2"
           />
           <input
             type="text"
@@ -111,7 +111,7 @@ const Profile = () => {
               }))
             }
             placeholder="Address line"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600 sm:col-span-2"
+            className="input-surface w-full rounded-2xl px-4 py-3 sm:col-span-2"
           />
           <input
             type="text"
@@ -123,7 +123,7 @@ const Profile = () => {
               }))
             }
             placeholder="City"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+            className="input-surface w-full rounded-2xl px-4 py-3"
           />
           <input
             type="text"
@@ -135,7 +135,7 @@ const Profile = () => {
               }))
             }
             placeholder="State"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+            className="input-surface w-full rounded-2xl px-4 py-3"
           />
           <input
             type="text"
@@ -147,7 +147,7 @@ const Profile = () => {
               }))
             }
             placeholder="ZIP code"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+            className="input-surface w-full rounded-2xl px-4 py-3"
           />
           <input
             type="text"
@@ -159,13 +159,13 @@ const Profile = () => {
               }))
             }
             placeholder="Country"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+            className="input-surface w-full rounded-2xl px-4 py-3"
           />
         </div>
         <button
           type="submit"
           disabled={busyAction === "profile"}
-          className="mt-6 rounded-2xl bg-slate-100 px-5 py-3 font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+          className="btn-primary mt-6 rounded-2xl px-5 py-3 font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {busyAction === "profile" ? "Saving..." : "Save profile"}
         </button>

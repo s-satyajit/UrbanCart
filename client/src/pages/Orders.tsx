@@ -16,19 +16,19 @@ const Orders = () => {
 
   return (
     <section className="space-y-4">
-      <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8 sm:p-10">
+      <div className="surface-panel rounded-[32px] p-8 sm:p-10">
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Orders</p>
-        <h1 className="mt-3 text-4xl font-semibold text-slate-50">Track order activity</h1>
+        <h1 className="brand-font mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">Track order activity</h1>
       </div>
       {orders.length === 0 ? (
-        <div className="rounded-[28px] border border-slate-800 bg-slate-900/70 p-8 text-slate-400">
+        <div className="surface-panel rounded-[28px] p-8 text-slate-400">
           No orders yet. Checkout your cart to create the first order.
         </div>
       ) : null}
       {orders.map((order) => (
         <article
           key={order.id}
-          className="rounded-[28px] border border-slate-800 bg-slate-900/70 p-6 sm:p-8"
+          className="surface-panel rounded-[28px] p-6 sm:p-8"
         >
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -37,7 +37,7 @@ const Orders = () => {
                 Placed on {new Date(order.placedAt).toLocaleDateString()}
               </p>
             </div>
-            <div className="rounded-full border border-slate-700 bg-slate-950 px-4 py-2 text-sm text-slate-200">
+            <div className="surface-chip rounded-full px-4 py-2 text-sm">
               {order.status}
             </div>
           </div>

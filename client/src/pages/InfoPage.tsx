@@ -43,7 +43,7 @@ const InfoPage = ({ type }: InfoPageProps) => {
 
   if (loading || !about) {
     return (
-      <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-10 text-center text-slate-300">
+      <div className="surface-panel rounded-[32px] p-10 text-center text-slate-300">
         Loading the Urban Cart story...
       </div>
     );
@@ -53,22 +53,22 @@ const InfoPage = ({ type }: InfoPageProps) => {
 
   return (
     <section className="space-y-8">
-      <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8 sm:p-10">
+      <div className="surface-panel rounded-[32px] p-8 sm:p-10">
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">
           {about.eyebrow}
         </p>
-        <h1 className="mt-3 text-4xl font-semibold text-slate-50">{about.title}</h1>
+        <h1 className="brand-font mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">{about.title}</h1>
         <p className="mt-4 max-w-3xl text-base leading-8 text-slate-400">
           {about.description}
         </p>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1fr_0.95fr]">
-        <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8">
+        <div className="surface-panel rounded-[32px] p-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Smart FAQs</p>
-              <h2 className="mt-2 text-3xl font-semibold text-slate-50">
+              <h2 className="brand-font mt-2 text-3xl font-semibold text-slate-50">
                 {about.ai?.title || "Ask about Urban Cart"}
               </h2>
             </div>
@@ -88,7 +88,7 @@ const InfoPage = ({ type }: InfoPageProps) => {
                   void submitQuestion(suggestion);
                 }}
                 disabled={busyAction === "about-ai" || !aiReady}
-                className="rounded-full border border-slate-700 bg-slate-950 px-4 py-2 text-sm text-slate-300 transition hover:border-slate-500 hover:text-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
+                className="btn-secondary rounded-full px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {suggestion}
               </button>
@@ -105,14 +105,14 @@ const InfoPage = ({ type }: InfoPageProps) => {
                 onChange={(event) => setQuestion(event.target.value)}
                 rows={4}
                 placeholder="Ask something like: Do you deliver fast or how do returns work?"
-                className="w-full rounded-[28px] border border-slate-800 bg-slate-950 px-5 py-4 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-slate-600"
+                className="input-surface w-full rounded-[28px] px-5 py-4 placeholder:text-slate-500"
               />
             </label>
             <div className="flex flex-wrap items-center gap-3">
               <button
                 type="submit"
                 disabled={busyAction === "about-ai" || !aiReady}
-                className="rounded-full bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                className="btn-primary rounded-full px-5 py-3 text-sm font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {busyAction === "about-ai" ? "Thinking..." : "Ask Urban Cart"}
               </button>
@@ -129,7 +129,7 @@ const InfoPage = ({ type }: InfoPageProps) => {
           ) : null}
 
           {answer ? (
-            <div className="mt-5 rounded-[28px] border border-slate-800 bg-slate-950 p-6">
+            <div className="surface-panel-soft mt-5 rounded-[28px] p-6">
               <p className="text-sm uppercase tracking-[0.22em] text-slate-400">
                 {lastQuestion ? `Answer to: ${lastQuestion}` : "Urban Cart answer"}
               </p>
@@ -138,20 +138,20 @@ const InfoPage = ({ type }: InfoPageProps) => {
               </p>
             </div>
           ) : (
-            <div className="mt-5 rounded-[28px] border border-dashed border-slate-800 bg-slate-950/50 p-6 text-slate-500">
+            <div className="surface-panel-soft mt-5 rounded-[28px] border border-dashed p-6 text-slate-500">
               Ask a question to see a live AI response based on Urban Cart store data.
             </div>
           )}
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8">
+          <div className="surface-panel rounded-[32px] p-8">
             <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Store policies</p>
             <div className="mt-5 space-y-4">
               {(about.policies || []).map((policy) => (
                 <article
                   key={policy.title}
-                  className="rounded-[24px] border border-slate-800 bg-slate-950 p-5"
+                  className="surface-panel-soft rounded-[24px] p-5"
                 >
                   <h3 className="text-lg font-semibold text-slate-50">{policy.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-400">{policy.description}</p>

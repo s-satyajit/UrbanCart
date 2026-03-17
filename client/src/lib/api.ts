@@ -41,8 +41,10 @@ async function request(path: string, options: RequestInit = {}, authToken = "") 
 export const getSession = (authToken) => request("/api/auth/session", {}, authToken);
 export const loginRequest = (body) =>
   request("/api/auth/login", { method: "POST", body: JSON.stringify(body) });
-export const registerRequest = (body) =>
-  request("/api/auth/register", { method: "POST", body: JSON.stringify(body) });
+export const requestRegistrationOtpRequest = (body) =>
+  request("/api/auth/register/request-otp", { method: "POST", body: JSON.stringify(body) });
+export const verifyRegistrationOtpRequest = (body) =>
+  request("/api/auth/register/verify", { method: "POST", body: JSON.stringify(body) });
 export const logoutRequest = (authToken) =>
   request("/api/auth/logout", { method: "POST" }, authToken);
 

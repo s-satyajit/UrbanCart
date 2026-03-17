@@ -19,11 +19,12 @@ import {
   getWishlist,
   loginRequest,
   logoutRequest,
-  registerRequest,
+  requestRegistrationOtpRequest,
   searchProductsRequest,
   sendContactMessage,
   updateCartItemRequest,
   updateProfileRequest,
+  verifyRegistrationOtpRequest,
   verifyCheckoutPaymentRequest,
 } from "../lib/api";
 import { clearSession, readStoredSession, storeSession } from "../lib/session";
@@ -164,14 +165,10 @@ export function ProductProvider({ children }: ProductProviderProps) {
     }
   };
 
-  const authenticate = async (mode, payload) => {
-    setBusyAction(mode);
+  const login = async (payload) => {
+    setBusyAction("login");
     try {
-      const response =
-        mode === "login"
-          ? await loginRequest(payload)
-          : await registerRequest(payload);
-
+      const response = await loginRequest(payload);
       persistSession(response);
       await loadStore(response.token);
       return response;
@@ -180,8 +177,26 @@ export function ProductProvider({ children }: ProductProviderProps) {
     }
   };
 
-  const login = (payload) => authenticate("login", payload);
-  const register = (payload) => authenticate("register", payload);
+  const requestRegistrationOtp = async (payload) => {
+    setBusyAction("register");
+    try {
+      return await requestRegistrationOtpRequest(payload);
+    } finally {
+      setBusyAction("");
+    }
+  };
+
+  const verifyRegistrationOtp = async (payload) => {
+    setBusyAction("register-verify");
+    try {
+      const response = await verifyRegistrationOtpRequest(payload);
+      persistSession(response);
+      await loadStore(response.token);
+      return response;
+    } finally {
+      setBusyAction("");
+    }
+  };
 
   const logout = async () => {
     setBusyAction("logout");
@@ -406,7 +421,8 @@ export function ProductProvider({ children }: ProductProviderProps) {
         products,
         productSearch,
         profile,
-        register,
+        register: requestRegistrationOtp,
+        requestRegistrationOtp,
         removeFromCart,
         removeFromWishlist,
         searchCatalog,
@@ -416,6 +432,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
         summary,
         updateCartItem,
         updateProfile,
+        verifyRegistrationOtp,
         verifyCheckoutPayment,
         wishlist,
         addToCart,

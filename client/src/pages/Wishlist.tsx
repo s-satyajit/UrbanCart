@@ -18,12 +18,12 @@ const Wishlist = () => {
 
   if (wishlist.length === 0) {
     return (
-      <section className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8 text-center sm:p-10">
-        <h1 className="text-3xl font-semibold text-slate-50">Wishlist is empty</h1>
+      <section className="surface-panel rounded-[32px] p-8 text-center sm:p-10">
+        <h1 className="brand-font text-3xl font-semibold text-slate-50">Wishlist is empty</h1>
         <p className="mt-3 text-slate-400">Save products to compare them later.</p>
         <Link
           to="/products"
-          className="mt-6 inline-flex rounded-full bg-slate-100 px-5 py-3 font-semibold text-slate-950 transition hover:bg-white"
+          className="btn-primary mt-6 inline-flex rounded-full px-5 py-3 font-semibold text-slate-950"
         >
           Explore products
         </Link>
@@ -36,7 +36,7 @@ const Wishlist = () => {
       {wishlist.map((product) => (
         <article
           key={product.id}
-          className="flex flex-col gap-5 rounded-[28px] border border-slate-800 bg-slate-900/70 p-5 lg:flex-row"
+          className="surface-panel flex flex-col gap-5 rounded-[28px] p-5 lg:flex-row"
         >
           <img
             src={product.image}
@@ -54,14 +54,14 @@ const Wishlist = () => {
             <div className="flex flex-wrap gap-3">
               <button
                 type="button"
-                className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-white"
+                className="btn-primary rounded-full px-4 py-2 text-sm font-semibold text-slate-950"
                 onClick={() => addToCart(product, 1)}
               >
                 Move to cart
               </button>
               <button
                 type="button"
-                className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-200 transition hover:border-slate-500 hover:bg-slate-950"
+                className="btn-secondary rounded-full px-4 py-2 text-sm"
                 onClick={() => removeFromWishlist(product.id)}
               >
                 Remove

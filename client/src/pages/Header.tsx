@@ -78,19 +78,19 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-screen-2xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8 xl:px-10">
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
+      <div className="surface-panel mx-auto flex w-full max-w-screen-2xl flex-col gap-4 rounded-[30px] px-4 py-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
           <div className="flex min-w-0 flex-1 flex-col gap-4 lg:flex-row lg:items-center">
             <Link to="/" className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-700 bg-slate-100 text-sm font-semibold text-slate-950">
+              <div className="brand-font flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(130deg,#f8fafc_0%,#d3f9f4_100%)] text-sm font-bold text-slate-950 shadow-[0_10px_26px_rgba(110,231,216,0.35)]">
                 UC
               </div>
               <div>
                 <p className="text-[11px] uppercase tracking-[0.32em] text-slate-400">
                   Urban Cart
                 </p>
-                <h1 className="text-xl font-semibold text-slate-50 sm:text-2xl">
+                <h1 className="brand-font text-xl font-semibold text-slate-50 sm:text-2xl">
                   Hello, {displayName}
                 </h1>
               </div>
@@ -98,7 +98,7 @@ const Header = () => {
 
             <form
               onSubmit={handleSearchSubmit}
-              className="min-w-0 flex-1 rounded-[28px] border border-slate-800 bg-slate-900/80 p-3"
+              className="surface-panel-soft min-w-0 flex-1 rounded-[26px] p-3"
             >
               <div className="flex flex-col gap-3 md:flex-row md:items-center">
                 <div className="min-w-0 flex-1">
@@ -110,13 +110,13 @@ const Header = () => {
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
                     placeholder="Search by product name, keyword, category, brand, or type"
-                    className="mt-2 w-full bg-transparent text-sm text-slate-100 outline-none placeholder:text-slate-500"
+                    className="input-surface mt-2 w-full rounded-2xl px-4 py-3 text-sm placeholder:text-slate-500"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={busyAction === "product-search"}
-                  className="rounded-2xl bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                  className="btn-primary rounded-2xl px-5 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {busyAction === "product-search" ? "Searching..." : "Search"}
                 </button>
@@ -124,14 +124,14 @@ const Header = () => {
             </form>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="rounded-full border border-slate-800 bg-slate-900/75 px-4 py-2 text-sm text-slate-300">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <div className="surface-chip rounded-full px-4 py-2 text-sm">
               Cart {summary.cartCount}
             </div>
-            <div className="rounded-full border border-slate-800 bg-slate-900/75 px-4 py-2 text-sm text-slate-300">
+            <div className="surface-chip rounded-full px-4 py-2 text-sm">
               Wishlist {summary.wishlistCount}
             </div>
-            <div className="rounded-full border border-slate-800 bg-slate-900/75 px-4 py-2 text-sm text-slate-300">
+            <div className="surface-chip rounded-full px-4 py-2 text-sm">
               Orders {summary.ordersCount}
             </div>
             {isAuthenticated ? (
@@ -139,9 +139,9 @@ const Header = () => {
                 <button
                   type="button"
                   onClick={() => setMenuOpen((current) => !current)}
-                  className="flex items-center gap-3 rounded-full border border-slate-800 bg-slate-900 px-3 py-2 text-left transition hover:border-slate-700"
+                  className="surface-panel-soft flex items-center gap-3 rounded-full px-3 py-2 text-left transition hover:border-slate-500/60"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 text-sm font-semibold text-slate-950">
+                  <span className="brand-font flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(130deg,#f8fafc_0%,#d3f9f4_100%)] text-sm font-semibold text-slate-950">
                     {initials || "G"}
                   </span>
                   <span className="hidden min-w-0 sm:block">
@@ -156,27 +156,27 @@ const Header = () => {
                 </button>
 
                 {menuOpen ? (
-                  <div className="absolute right-0 top-[calc(100%+0.75rem)] z-20 w-72 rounded-[24px] border border-slate-800 bg-slate-950 p-3 shadow-2xl">
-                    <div className="rounded-[18px] bg-slate-900 px-4 py-3">
+                  <div className="surface-panel absolute right-0 top-[calc(100%+0.75rem)] z-20 w-72 rounded-[24px] p-3 shadow-2xl">
+                    <div className="surface-panel-soft rounded-[18px] px-4 py-3">
                       <p className="text-sm font-medium text-slate-100">{displayName}</p>
                       <p className="mt-1 text-xs text-slate-400">{displayEmail}</p>
                     </div>
                     <div className="mt-3 space-y-1">
                       <Link
                         to="/profile"
-                        className="block rounded-2xl px-4 py-3 text-sm text-slate-200 transition hover:bg-slate-900"
+                        className="block rounded-2xl px-4 py-3 text-sm text-slate-200 transition hover:bg-slate-900/80"
                       >
                         Profile details
                       </Link>
                       <Link
                         to="/orders"
-                        className="block rounded-2xl px-4 py-3 text-sm text-slate-200 transition hover:bg-slate-900"
+                        className="block rounded-2xl px-4 py-3 text-sm text-slate-200 transition hover:bg-slate-900/80"
                       >
                         Order history
                       </Link>
                       <Link
                         to="/contact"
-                        className="block rounded-2xl px-4 py-3 text-sm text-slate-200 transition hover:bg-slate-900"
+                        className="block rounded-2xl px-4 py-3 text-sm text-slate-200 transition hover:bg-slate-900/80"
                       >
                         Contact support
                       </Link>
@@ -188,13 +188,13 @@ const Header = () => {
               <>
                 <Link
                   to="/sign-in"
-                  className="rounded-full border border-slate-700 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-slate-500 hover:bg-slate-900"
+                  className="btn-secondary rounded-full px-4 py-2 text-sm font-medium"
                 >
                   Sign in
                 </Link>
                 <Link
                   to="/sign-up"
-                  className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-white"
+                  className="btn-primary rounded-full px-4 py-2 text-sm font-semibold"
                 >
                   Sign up
                 </Link>
@@ -204,16 +204,14 @@ const Header = () => {
         </div>
 
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <nav className="flex flex-wrap gap-2">
+          <nav className="flex max-w-full gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {navigation.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `rounded-full px-4 py-2 text-sm font-medium transition ${
-                    isActive
-                      ? "bg-slate-100 text-slate-950"
-                      : "border border-slate-800 bg-slate-900/75 text-slate-300 hover:border-slate-700 hover:text-slate-100"
+                  `whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition ${
+                    isActive ? "btn-primary text-slate-950" : "btn-secondary"
                   }`
                 }
               >
@@ -222,7 +220,7 @@ const Header = () => {
             ))}
           </nav>
 
-          <p className="text-sm text-slate-500">
+          <p className="text-xs text-slate-500 sm:text-sm">
             Search by name, keyword, brand, category, or product reference.
           </p>
         </div>

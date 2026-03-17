@@ -106,9 +106,9 @@ const Contact = () => {
 
   return (
     <section className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-      <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8 sm:p-10">
+      <div className="surface-panel rounded-[32px] p-8 sm:p-10">
         <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Contact</p>
-        <h1 className="mt-3 text-4xl font-semibold text-slate-50">Reach the team</h1>
+        <h1 className="brand-font mt-3 text-3xl font-semibold text-slate-50 sm:text-4xl">Reach the team</h1>
         <p className="mt-4 max-w-xl text-slate-400">
           Send product questions, order support requests, or partnership inquiries. If
           you want help writing the message, Urban Cart can draft it for you with AI.
@@ -118,7 +118,7 @@ const Contact = () => {
           {(contact?.channels || []).map((channel) => (
             <div
               key={channel.id}
-              className="rounded-[24px] border border-slate-800 bg-slate-950 p-5"
+              className="surface-panel-soft rounded-[24px] p-5"
             >
               <p className="font-medium text-slate-50">{channel.title}</p>
               <p className="mt-2 text-slate-200">{channel.value}</p>
@@ -127,7 +127,7 @@ const Contact = () => {
           ))}
         </div>
 
-        <div className="mt-6 rounded-[24px] border border-slate-800 bg-slate-950 p-5">
+        <div className="surface-panel-soft mt-6 rounded-[24px] p-5">
           <p className="text-sm uppercase tracking-[0.2em] text-slate-400">Write with AI</p>
           <p className="mt-3 text-sm leading-7 text-slate-300">
             Add your name, email, and a few words about what you need. Urban Cart will
@@ -136,12 +136,12 @@ const Contact = () => {
           <p className="mt-4 text-sm text-slate-500">
             {contact?.ai?.enabled
               ? "AI is ready to help with contact drafts."
-              : "Add your Gemini API key in the backend env to enable AI drafting."}
+              : "Add your  API key in the backend env to enable AI drafting."}
           </p>
         </div>
       </div>
 
-      <div className="rounded-[32px] border border-slate-800 bg-slate-900/70 p-8">
+      <div className="surface-panel rounded-[32px] p-8">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold text-slate-50">Send a message</h2>
@@ -153,7 +153,7 @@ const Contact = () => {
             type="button"
             onClick={handleWriteWithAI}
             disabled={busyAction === "contact-ai" || !contact?.ai?.enabled}
-            className="rounded-2xl border border-slate-700 bg-slate-950 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500 hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+            className="btn-secondary rounded-2xl px-5 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50"
           >
             {busyAction === "contact-ai" ? "Writing..." : "Write with AI"}
           </button>
@@ -166,14 +166,14 @@ const Contact = () => {
               value={form.name}
               onChange={updateField("name")}
               placeholder="Name"
-              className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+              className="input-surface w-full rounded-2xl px-4 py-3"
             />
             <input
               type="email"
               value={form.email}
               onChange={updateField("email")}
               placeholder="Email"
-              className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+              className="input-surface w-full rounded-2xl px-4 py-3"
             />
           </div>
 
@@ -182,7 +182,7 @@ const Contact = () => {
             value={form.subject}
             onChange={updateField("subject")}
             placeholder="Subject"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+            className="input-surface w-full rounded-2xl px-4 py-3"
           />
 
           <textarea
@@ -190,7 +190,7 @@ const Contact = () => {
             value={form.howCanWeHelp}
             onChange={updateField("howCanWeHelp")}
             placeholder="How can we help?"
-            className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-slate-600"
+            className="input-surface w-full rounded-2xl px-4 py-3"
           />
 
           {draftStatus.message ? (
@@ -220,7 +220,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={busyAction === "contact"}
-            className="rounded-2xl bg-slate-100 px-5 py-3 font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="btn-primary rounded-2xl px-5 py-3 font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {busyAction === "contact" ? "Sending..." : "Send message"}
           </button>
@@ -235,7 +235,7 @@ const Contact = () => {
               {contact.recentMessages.map((item) => (
                 <div
                   key={item._id || item.id}
-                  className="rounded-2xl border border-slate-800 bg-slate-950 p-4"
+                  className="surface-panel-soft rounded-2xl p-4"
                 >
                   <p className="font-medium text-slate-50">{item.subject}</p>
                   <p className="mt-2 text-sm text-slate-400">

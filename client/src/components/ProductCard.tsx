@@ -46,17 +46,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[28px] border border-slate-800 bg-slate-900/78 shadow-[0_20px_60px_rgba(2,6,23,0.28)]">
+    <article className="surface-panel group flex h-full flex-col overflow-hidden rounded-[28px] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_65px_rgba(5,12,30,0.45)]">
       <div className="relative">
         <img
           src={product.image}
           alt={product.title}
-          className="h-56 w-full object-cover"
+          className="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
         />
-        <div className="absolute left-4 top-4 rounded-full border border-slate-700 bg-slate-950/85 px-3 py-1 text-xs font-medium text-slate-200">
+        <div className="surface-chip absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-medium">
           {product.category}
         </div>
-        <div className="absolute right-4 top-4 rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-950">
+        <div className="btn-primary absolute right-4 top-4 rounded-full px-3 py-1 text-sm font-semibold text-slate-950">
           INR {product.price}
         </div>
       </div>
@@ -69,7 +69,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               {product.badge || product.brand}
             </p>
           </div>
-          <span className="rounded-full border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-300">
+          <span className="surface-chip rounded-full px-2 py-1 text-xs">
             {product.rating.rate.toFixed(1)} rating
           </span>
         </div>
@@ -78,10 +78,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {product.description}
         </p>
 
-        <div className="mt-5 flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950 p-2">
+        <div className="surface-panel-soft mt-5 flex items-center justify-between rounded-2xl p-2">
           <button
             type="button"
-            className="h-10 w-10 rounded-xl border border-slate-800 bg-slate-900 text-lg text-slate-100 transition hover:border-slate-600"
+            className="btn-secondary h-10 w-10 rounded-xl text-lg"
             onClick={() => setQuantity((current) => Math.max(1, current - 1))}
           >
             -
@@ -89,7 +89,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <span className="text-sm font-medium text-slate-100">{quantity}</span>
           <button
             type="button"
-            className="h-10 w-10 rounded-xl border border-slate-800 bg-slate-900 text-lg text-slate-100 transition hover:border-slate-600"
+            className="btn-secondary h-10 w-10 rounded-xl text-lg"
             onClick={() => setQuantity((current) => current + 1)}
           >
             +
@@ -101,7 +101,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             type="button"
             disabled={isBusy}
             onClick={() => handleAction(() => addToCart(product, quantity))}
-            className="flex-1 rounded-2xl bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="btn-primary flex-1 rounded-2xl px-4 py-3 text-sm font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Add to cart
           </button>
@@ -109,7 +109,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             type="button"
             disabled={isBusy || isWishlistItem}
             onClick={() => handleAction(() => addToWishlist(product.id))}
-            className="rounded-2xl border border-slate-700 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500 hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-50"
+            className="btn-secondary rounded-2xl px-4 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isWishlistItem ? "Saved" : "Wishlist"}
           </button>
