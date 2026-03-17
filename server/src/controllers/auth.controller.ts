@@ -1,7 +1,12 @@
 import { asyncHandler } from "../middleware/async-handler.js";
 import { badRequestError } from "../middleware/error-handler.js";
 import { Session } from "../models/Session.js";
-import { createUserSession, loginUser, registerUser } from "../services/auth.service.js";
+import {
+  createUserSession,
+  loginUser,
+  requestRegistrationOtp,
+  verifyRegistrationOtp,
+} from "../services/auth.service.js";
 import { ensureUserResources, getUserSummary } from "../services/account.service.js";
 import { buildNavigation, serializeUser } from "../utils/serializers.js";
 
@@ -44,14 +49,34 @@ export const getSession = asyncHandler(async (req, res) => {
   );
 });
 
-export const register = asyncHandler(async (req, res) => {
+export const requestRegisterOtp = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
     throw badRequestError("Name, email, and password are required.");
   }
 
-  const user = await registerUser({ name, email, password });
+  if (password.length < 6) {
+    throw badRequestError("Password must be at least 6 characters.");
+  }
+
+  const otpRequest = await requestRegistrationOtp({ name, email, password });
+
+  res.status(200).json({
+    message: "OTP sent to your email. Verify it to complete account creation.",
+    email: otpRequest.email,
+    expiresAt: otpRequest.expiresAt,
+  });
+});
+
+export const verifyRegisterOtp = asyncHandler(async (req, res) => {
+  const { email, otp } = req.body;
+
+  if (!email || !otp) {
+    throw badRequestError("Email and OTP are required.");
+  }
+
+  const user = await verifyRegistrationOtp({ email, otp });
   const session = await createUserSession(user);
   const summary = await getUserSummary(user._id);
 

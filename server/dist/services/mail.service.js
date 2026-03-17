@@ -1,12 +1,11 @@
 import nodemailer from "nodemailer";
 import { env } from "../config/env.js";
 let transporter;
-function isMailConfigured() {
-    return Boolean(env.smtpHost &&
-        env.smtpPort &&
-        env.smtpUser &&
-        env.smtpPass &&
-        env.contactNotificationTo);
+function isSmtpConfigured() {
+    return Boolean(env.smtpHost && env.smtpPort && env.smtpUser && env.smtpPass);
+}
+function isContactNotificationConfigured() {
+    return Boolean(isSmtpConfigured() && env.contactNotificationTo);
 }
 function getTransporter() {
     if (!transporter) {
@@ -23,7 +22,7 @@ function getTransporter() {
     return transporter;
 }
 export async function sendContactNotification(contactMessage) {
-    if (!isMailConfigured()) {
+    if (!isContactNotificationConfigured()) {
         return false;
     }
     try {
@@ -47,6 +46,31 @@ export async function sendContactNotification(contactMessage) {
     }
     catch (error) {
         console.error("Contact notification email failed:", error);
+        return false;
+    }
+}
+export async function sendRegistrationOtp(payload) {
+    if (!isSmtpConfigured()) {
+        return false;
+    }
+    try {
+        await getTransporter().sendMail({
+            from: env.contactNotificationFrom || env.smtpUser,
+            to: payload.email,
+            subject: "Urban Cart verification code",
+            text: [
+                `Hi ${payload.name},`,
+                "",
+                `Your Urban Cart verification code is: ${payload.otp}`,
+                "",
+                `This code expires in ${payload.expiresInMinutes} minutes.`,
+                "If you did not request this, you can ignore this email.",
+            ].join("\n"),
+        });
+        return true;
+    }
+    catch (error) {
+        console.error("Registration OTP email failed:", error);
         return false;
     }
 }

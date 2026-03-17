@@ -22,7 +22,7 @@ export const aboutContent = {
     "MongoDB-backed persistence for accounts, carts, wishlists, orders, and messages",
     "Session-based sign in stored locally for one day with backend validation",
     "Razorpay-ready checkout architecture for real payment collection",
-    "Gemini-powered smart FAQs grounded in Urban Cart store data",
+    "-powered smart FAQs grounded in Urban Cart store data",
   ],
   values: [
     {

@@ -10,6 +10,9 @@ dotenv.config({ path: envFilePath });
 const nodeEnv = process.env.NODE_ENV || "development";
 const mongoUri = process.env.MONGODB_URI?.trim();
 const clientUrl = process.env.CLIENT_URL?.trim();
+const port = Number(process.env.PORT);
+const resolvedMongoUri = mongoUri;
+const resolvedClientUrl = clientUrl;
 
 if (nodeEnv === "production" && !mongoUri) {
   throw new Error("Missing MONGODB_URI in production environment.");
@@ -21,24 +24,29 @@ if (nodeEnv === "production" && !clientUrl) {
 
 export const env = {
   nodeEnv,
-  port: Number(process.env.PORT),
-  mongoUri: mongoUri,
-  clientUrl: clientUrl,
-  clientUrls: (clientUrl)
+  port,
+  mongoUri: resolvedMongoUri,
+  clientUrl: resolvedClientUrl,
+  clientUrls: resolvedClientUrl
     .split(",")
     .map((value) => value.trim())
     .filter(Boolean),
-  sessionTtlHours: Number(process.env.SESSION_TTL_HOURS) || 24,
+  sessionTtlHours: Number(process.env.SESSION_TTL_HOURS),
   razorpayKeyId: process.env.RAZORPAY_KEY_ID || "",
   razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET || "",
   razorpayCurrency: process.env.RAZORPAY_CURRENCY || "INR",
   geminiApiKey: process.env.GEMINI_API_KEY || "",
-  geminiModel: process.env.GEMINI_MODEL || "gemini-2.5-flash",
-  smtpHost: process.env.SMTP_HOST || "",
-  smtpPort: Number(process.env.SMTP_PORT) || 587,
+  geminiModel: process.env.GEMINI_MODEL,
+  smtpHost: process.env.SMTP_HOST?.trim(),
+  smtpPort: Number(process.env.SMTP_PORT),
   smtpSecure: process.env.SMTP_SECURE === "true",
-  smtpUser: process.env.SMTP_USER || "",
-  smtpPass: process.env.SMTP_PASS || "",
+  smtpUser: process.env.SMTP_USER?.trim(),
+  smtpPass:
+    process.env.SMTP_PASS?.trim() || process.env.SMTP_PASSWORD?.trim() || "",
   contactNotificationTo: process.env.CONTACT_NOTIFICATION_TO || "",
   contactNotificationFrom: process.env.CONTACT_NOTIFICATION_FROM || "",
+  registrationOtpExpiryMinutes:
+    Number(process.env.REGISTRATION_OTP_EXPIRY_MINUTES) || 10,
+  registrationOtpMaxAttempts:
+    Number(process.env.REGISTRATION_OTP_MAX_ATTEMPTS) || 5,
 };
