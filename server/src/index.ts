@@ -1,12 +1,10 @@
 import app  from "./app.js";
-import { connectDatabase } from "./config/database.js";
 import { env } from "./config/env.js";
-import { seedProducts } from "./services/seed.service.js";
+import { ensureAppInitialized } from "./services/bootstrap.service.js";
 
 async function startServer() {
   try {
-    await connectDatabase();
-    await seedProducts();
+    await ensureAppInitialized();
 
     app.listen(env.port, () => {
       console.log(`Urban Cart API running on port ${env.port}`);
@@ -18,4 +16,3 @@ async function startServer() {
 }
 
 startServer();
-

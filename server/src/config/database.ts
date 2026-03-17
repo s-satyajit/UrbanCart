@@ -2,34 +2,63 @@ import mongoose from "mongoose";
 import { env } from "./env.js";
 
 let memoryServer = null;
+let connectPromise: Promise<typeof mongoose> | null = null;
+
+function maskConnectionUri(uri: string) {
+  try {
+    const parsed = new URL(uri);
+
+    if (parsed.username || parsed.password) {
+      parsed.username = "***";
+      parsed.password = "***";
+    }
+
+    return parsed.toString();
+  } catch {
+    return "<invalid-uri>";
+  }
+}
 
 export async function connectDatabase() {
+  if (mongoose.connection.readyState === 1) {
+    return;
+  }
+
+  if (connectPromise) {
+    await connectPromise;
+    return;
+  }
+
   mongoose.set("strictQuery", true);
+  const maskedUri = maskConnectionUri(env.mongoUri);
 
   try {
-    await mongoose.connect(env.mongoUri, {
+    connectPromise = mongoose.connect(env.mongoUri, {
       serverSelectionTimeoutMS: 5000,
     });
-    console.log(`MongoDB connected at ${env.mongoUri}`);
+    await connectPromise;
+    console.log(`MongoDB connected at ${maskedUri}`);
   } catch (error) {
+    connectPromise = null;
+
     if (env.nodeEnv === "production") {
       throw error;
     }
 
     console.warn(
-      `MongoDB unavailable at ${env.mongoUri}. Falling back to in-memory MongoDB for development.`
+      `MongoDB unavailable at ${maskedUri}. Falling back to in-memory MongoDB for development.`
     );
 
     const { MongoMemoryServer } = await import("mongodb-memory-server");
 
     memoryServer = await MongoMemoryServer.create({
       instance: {
-        dbName: "task-eleven-store",
+        dbName: "urban-cart",
       },
     });
 
     await mongoose.connect(memoryServer.getUri(), {
-      dbName: "task-eleven-store",
+      dbName: "urban-cart",
     });
 
     console.log("MongoDB memory server connected");
@@ -44,4 +73,3 @@ export async function disconnectDatabase() {
     memoryServer = null;
   }
 }
-

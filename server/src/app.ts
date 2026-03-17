@@ -14,6 +14,7 @@ import productRoutes from "./routes/product.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
 import storefrontRoutes from "./routes/storefront.routes.js";
 import wishlistRoutes from "./routes/wishlist.routes.js";
+import { ensureAppInitialized } from "./services/bootstrap.service.js";
 
 const app = express();
 
@@ -25,12 +26,25 @@ app.use(
 );
 app.use(express.json());
 app.use(morgan(env.nodeEnv === "production" ? "combined" : "dev"));
-app.use(optionalAuth);
 
 app.get("/api/health", (req, res) => {
   res.json({ ok: true, service: "urban-cart-api" });
 });
 
+app.use("/api", async (req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+
+  try {
+    await ensureAppInitialized();
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+});
+
+app.use("/api", optionalAuth);
 app.use("/api/auth", authRoutes);
 app.use("/api/storefront", storefrontRoutes);
 app.use("/api/products", productRoutes);

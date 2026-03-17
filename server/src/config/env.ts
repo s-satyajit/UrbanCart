@@ -1,11 +1,23 @@
 import dotenv from "dotenv";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-dotenv.config({ path: "./src/config/.env" });
+dotenv.config();
+
+const envFilePath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".env");
+dotenv.config({ path: envFilePath });
+
+const nodeEnv = process.env.NODE_ENV || "development";
+const mongoUri = process.env.MONGODB_URI?.trim();
+
+if (nodeEnv === "production" && !mongoUri) {
+  throw new Error("Missing MONGODB_URI in production environment.");
+}
 
 export const env = {
-  nodeEnv: process.env.NODE_ENV || "development",
+  nodeEnv,
   port: Number(process.env.PORT) || 3000,
-  mongoUri: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/task-eleven-store",
+  mongoUri: mongoUri || "mongodb://127.0.0.1:27017/urban-cart",
   clientUrl: process.env.CLIENT_URL || "http://localhost:5173",
   sessionTtlHours: Number(process.env.SESSION_TTL_HOURS) || 24,
   razorpayKeyId: process.env.RAZORPAY_KEY_ID || "",
