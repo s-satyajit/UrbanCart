@@ -17,10 +17,35 @@ import wishlistRoutes from "./routes/wishlist.routes.js";
 import { ensureAppInitialized } from "./services/bootstrap.service.js";
 
 const app = express();
+const allowedOrigins = new Set(env.clientUrls);
+const allowAnyOrigin = allowedOrigins.has("*");
+
+function isAllowedVercelOrigin(origin: string) {
+  try {
+    const parsed = new URL(origin);
+    return parsed.hostname.endsWith(".vercel.app");
+  } catch {
+    return false;
+  }
+}
 
 app.use(
   cors({
-    origin: env.clientUrls.includes("*") ? true : env.clientUrls,
+    origin(origin, callback) {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowAnyOrigin || allowedOrigins.has(origin)) {
+        return callback(null, true);
+      }
+
+      if (env.nodeEnv === "production" && isAllowedVercelOrigin(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`CORS origin is not allowed: ${origin}`));
+    },
     credentials: false,
   })
 );
