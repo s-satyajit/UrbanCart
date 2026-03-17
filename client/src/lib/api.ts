@@ -2,8 +2,20 @@ const defaultHeaders = {
   "Content-Type": "application/json",
 };
 
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+const apiBaseUrl = configuredApiUrl ? configuredApiUrl.replace(/\/+$/, "") : "";
+
+function resolveApiUrl(path: string) {
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return apiBaseUrl ? `${apiBaseUrl}${normalizedPath}` : normalizedPath;
+}
+
 async function request(path: string, options: RequestInit = {}, authToken = "") {
-  const response = await fetch(path, {
+  const response = await fetch(resolveApiUrl(path), {
     ...options,
     headers: {
       ...defaultHeaders,
