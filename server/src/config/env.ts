@@ -9,16 +9,25 @@ dotenv.config({ path: envFilePath });
 
 const nodeEnv = process.env.NODE_ENV || "development";
 const mongoUri = process.env.MONGODB_URI?.trim();
+const clientUrl = process.env.CLIENT_URL?.trim();
 
 if (nodeEnv === "production" && !mongoUri) {
   throw new Error("Missing MONGODB_URI in production environment.");
 }
 
+if (nodeEnv === "production" && !clientUrl) {
+  throw new Error("Missing CLIENT_URL in production environment.");
+}
+
 export const env = {
   nodeEnv,
-  port: Number(process.env.PORT) || 3000,
-  mongoUri: mongoUri || "mongodb://127.0.0.1:27017/urban-cart",
-  clientUrl: process.env.CLIENT_URL || "http://localhost:5173",
+  port: Number(process.env.PORT),
+  mongoUri: mongoUri,
+  clientUrl: clientUrl,
+  clientUrls: (clientUrl)
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean),
   sessionTtlHours: Number(process.env.SESSION_TTL_HOURS) || 24,
   razorpayKeyId: process.env.RAZORPAY_KEY_ID || "",
   razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET || "",
